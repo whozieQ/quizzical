@@ -4,6 +4,8 @@
 
 At the conclusion of the React Basics module we were challenged to work solo to create a quiz-type app using the React basics we had learned.
 
+- Live App via Netflify available here: https://whozieq-quizzical.netlify.app/
+
 ### Key requirements include:
 1. Follow Figma guidelines found here: https://www.figma.com/file/E9S5iPcm10f0RIHK8mCqKL/Quizzical-App?node-id=0%3A1 (but feel free to put your own spin on it)
 2. Leverage the OTDB API to pull trivia questions
