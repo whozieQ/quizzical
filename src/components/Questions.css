@@ -1,0 +1,26 @@
+.answer--hidden{
+    opacity: 0;
+    width: 0;
+    position: fixed;
+}
+.answer--button{
+    border: 0.794239px solid #4D5B9E;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+.question--answers{
+    display: flex;
+    justify-content: space-evenly;
+}
+.selected{
+    background: #D6DBF5;
+    border: none;
+}
+.incorrect{
+    background: #F8BCBC;
+    border: none;
+}
+.correct{
+    background: #94D7A2;
+    border: none;
+}
