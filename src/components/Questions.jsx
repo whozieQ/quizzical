@@ -33,7 +33,7 @@ export default function Questions(props){
     }
     return(
         <div className="App">
-            {questionlist.data.map((item)=>(<Question key={item.id} question={item}/>))}
+            {questionlist.data.map((item)=>(<Question key={item.id} question={item} showResults={showResults}/>))}
             <div>
                 {showResults && <p>{getScore()}</p> }
                 {showResults ? 

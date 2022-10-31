@@ -3,24 +3,28 @@
     width: 0;
     position: fixed;
 }
-.answer--button{
-    border: 0.794239px solid #4D5B9E;
-    border-radius: 8px;
-    padding: 10px 20px;
-}
 .question--answers{
     display: flex;
     justify-content: space-evenly;
 }
+.answer--button{
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+.unselected{
+    border: 1px solid #4D5B9E;
+}
 .selected{
     background: #D6DBF5;
-    border: none;
 }
 .incorrect{
+    border: 1px solid #4D5B9E;
+    opacity: .5;
+}
+.incorrect-selected{
     background: #F8BCBC;
-    border: none;
+    opacity: .5;
 }
 .correct{
     background: #94D7A2;
-    border: none;
 }

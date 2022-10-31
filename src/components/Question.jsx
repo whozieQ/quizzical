@@ -77,6 +77,20 @@ export default function Question(props){
         })
     }
 
+    function getAnswerStyle(answer){
+        let classList = "answer--button"
+        if (props.showResults) {
+            if (answer.selected) {
+                classList = answer.correct ? "answer--button correct" : "answer--button incorrect-selected"
+            } else {
+                classList = answer.correct ? "answer--button correct" : "answer--button incorrect"
+            }
+        } else {
+            classList = answer.selected ? "answer--button selected" : "answer--button unselected"
+        }
+        return classList
+    }
+
     function getHTML(){
         return (
             question.answers.map(answer=> (
@@ -89,7 +103,7 @@ export default function Question(props){
                         name="fav_language" 
                         value={decodeString(answer.answer)}
                     />
-                    <label className={answer.selected ? "answer--button selected": "answer--button"} htmlFor={answer.id}>{answer.answer}</label>
+                    <label className={getAnswerStyle(answer)} htmlFor={answer.id}>{answer.answer}</label>
                 </div>
             ))
         )
