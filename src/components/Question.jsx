@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid'
 
 export default function Question(props){
     //This component receives a single question
+    //decode the display strings
+    //create an answers array
     const [question, setQuestion] = React.useState(
         {
             ...props.question, 
@@ -10,6 +12,12 @@ export default function Question(props){
             answers:getAnswerOptions()}
         )
  
+// TODO: useEffect to push the updated Question data back up 
+//to the Questions component
+//Instead of updating the questions themselves when an answer is selected,
+// consider just maintaining a totally separate array for the answers, to simplify things??
+
+
     //the questions and answers will arrive with special characters
     //encoded as HTML e.g. &#49; or some such
     //must decode them so they will display properly
@@ -55,12 +63,6 @@ export default function Question(props){
     //update Selected value in the state property for this answer
     function handleClick(id){
         setQuestion((prevQuestion)=>{
-            const newAnswers = prevQuestion.answers.map(item=>(
-                {
-                    ...item,
-                    selected: item.id===id ? true : false
-                }
-            ))
             return (
                 {
                     ...prevQuestion,
