@@ -1,9 +1,13 @@
-import React from "react"
+import React , {useState} from "react"
+import questionlist from "./data"
+import Question from "./Question"
 
-export default function Questions(){
+
+export default function Questions(props){
+
     return(
         <div className="App">
-            <h1>Questions will appear here</h1>
+            {questionlist.data.map((item)=>(<Question key={item.id} question={item}/>))}
         </div>
     )
 }
