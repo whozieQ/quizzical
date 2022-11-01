@@ -8,12 +8,9 @@ export default function Questions(props){
     //tracks whether quiz is still in progress or
     //if user has submitted answers for grading
     const [showResults,setShowResults] = useState(false);
+    const [correctAnswers, setCorrectAnswers] = useState(0)
 
-    //TODO: need to receive updated Questions data from the child
-    //Question components so that we have access to selected answers
-    //Instead of updating the questions themselves, consider just maintaining
-    //a totally separate array for the answers, to simplify things?
-    
+   
     function checkResults(){
         setShowResults(true)
     }
@@ -31,9 +28,16 @@ export default function Questions(props){
         const total = 5
         return `You scored ${correct} / ${total} correct answers`
     }
+
+    //child component will call this passing in its ID
+ //   setCorrectAnswers((prevAnswers, id)=>{
+//TODO update this to keep existing answers and update just the answer from the child that called it
+ //   },[])
+//setCorrectAnswers={()=>setCorrectAnswers(item.id)}
+    
     return(
         <div className="App">
-            {questionlist.data.map((item)=>(<Question key={item.id} question={item} showResults={showResults}/>))}
+            {questionlist.data.map((item)=>(<Question key={item.id} question={item} showResults={showResults} />))}
             <div>
                 {showResults && <p>{getScore()}</p> }
                 {showResults ? 

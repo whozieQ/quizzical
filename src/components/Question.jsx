@@ -62,19 +62,25 @@ export default function Question(props){
 
     //update Selected value in the state property for this answer
     function handleClick(id){
-        setQuestion((prevQuestion)=>{
-            return (
-                {
-                    ...prevQuestion,
-                    answers: prevQuestion.answers.map(item=>(
-                        {
-                            ...item,
-                            selected: item.id===id ? true : false
-                        }
-                    ))
-                }
-            )
-        })
+        if (!props.showResults) {
+            setQuestion((prevQuestion)=>{
+                return (
+                    {
+                        ...prevQuestion,
+                        answers: prevQuestion.answers.map(item=>(
+                            {
+                                ...item,
+                                selected: item.id===id ? true : false
+                            }
+                        ))
+                    }
+                )
+            })
+        } else {
+            console.log("Answers cannot be changed after scoring")
+        }
+        // if showResults is true then clicking the answer should do nothing
+        //as the results have already been scored
     }
 
     function getAnswerStyle(answer){
@@ -107,7 +113,7 @@ export default function Question(props){
                 </div>
             ))
         )
-}
+    }
 
     return (
         <article className="question">
