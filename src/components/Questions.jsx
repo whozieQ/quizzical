@@ -37,7 +37,7 @@ export default function Questions(props){
     
     return(
         <div className="App">
-            {questionlist.data.map((item)=>(<Question key={item.id} question={item} showResults={showResults} />))}
+            {questionlist.data.map((item)=>(<Question key={item.id} question={item} showResults={showResults} scoreResult={setCorrectAnswers}/>))}
             <div>
                 {showResults && <p>{getScore()}</p> }
                 {showResults ? 

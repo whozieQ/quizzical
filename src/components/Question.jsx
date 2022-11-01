@@ -9,8 +9,9 @@ export default function Question(props){
         {
             ...props.question, 
             question: decodeString(props.question.question),
-            answers:getAnswerOptions()}
-        )
+            answers: getAnswerOptions(),
+            correct: 0
+        })
  
 // TODO: useEffect to push the updated Question data back up 
 //to the Questions component
@@ -62,6 +63,16 @@ export default function Question(props){
 
     //update Selected value in the state property for this answer
     function handleClick(id){
+        const thisAnswer = question.answers.find(element=> element.id === id )
+        //update the question state to record that this question has been answered
+        //correctly or not
+        setQuestion(prevQuestion => (
+            {
+                ...prevQuestion,
+                correct: thisAnswer.correct ? 1 : 0
+            }
+        ))
+
         if (!props.showResults) {
             setQuestion((prevQuestion)=>{
                 return (
@@ -84,6 +95,7 @@ export default function Question(props){
     }
 
     function getAnswerStyle(answer){
+        console.log(`${question.question} ${question.correct}`)
         let classList = "answer--button"
         if (props.showResults) {
             if (answer.selected) {
