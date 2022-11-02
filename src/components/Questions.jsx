@@ -1,16 +1,14 @@
-import React , {useState} from "react"
+import React from "react"
 import Question from "./Question"
 import "./Questions.css"
 
 
-export default function Questions(props){
-    const isLocked = props.isLocked
-    const qData = props.qData
-    const updateQData = function () {props.updateQData}
-    
+//this component acts as a container to hold the list of questions
+//it recieves the full list of questions as a property
+export default function Questions({isLocked,qData,updateQData}){
     return(
         <div className="questions--container">
-            {props.qData.map((item)=>(<Question key={item.id} question={item} showResults={props.isLocked}/>))}
+            {qData.map((item)=>(<Question key={item.id} question={item} updateQuestion={updateQData} showResults={isLocked}/>))}
         </div>
     )
 }

@@ -6,40 +6,60 @@ import GameControls from './components/GameControls'
 import questionlist from "./components/data"
 
 const useStaticData = true
+const numQuestions = 5
 
 function App() {
+//has user clicked on start game
   const [isStarted, setIsStarted] = useState(false)
-  const [questions, setQuestions] = useState([])
-  const [isLocked, setIsLocked] = useState(false)
-  const [score, setScore] = useState(0)
+//instances of new set of questions
+//lets us track when Play Again has been clicked
+//and we need new questions
   const [gameCount, setGameCount] = useState(0)
+//has user clicked on check answers
+  const [isLocked, setIsLocked] = useState(false)
+//the current set of questions
+  const [questions, setQuestions] = useState([])
+//the current number of correct answers
+  const [score, setScore] = useState(0)
 
-//on initial load, acquire a set of trivia questions
-//never need to run this again
+//any time the game count changes get a new set of questions
   useEffect(()=>{
-      console.log("in useEffect")
-      const url = "https://opentdb.com/api.php?amount=5&difficulty=easy"
+      const url = `https://opentdb.com/api.php?amount=${numQuestions}&difficulty=easy`
       fetch(url).then((response)=>response.json())
         .then((data)=>{
           let qData = useStaticData ? questionlist : data 
-        setQuestions(qData.results.map((item)=>(
-          {
-            id: nanoid(),
-            question: decodeString(item),
-            answers:getAnswerOptions(item),
-            score: 0
-          }
-        ))  
-)
-  })
+          //restructure the API data more simply and ready to use
+          //add a unique ID to each question
+          let tempQ = qData.results.map(item=>(
+            {
+              id: nanoid(),
+              question: decodeString(item.question),
+              answers: getAnswerOptions(item)
+            }
+          )) 
+        setQuestions(tempQ)
+      })
     }
     ,[gameCount]
   )
 
-    //the questions and answers will arrive with special characters
+//update the score any time the questions data changes
+  useEffect(()=>{
+    let totalScore = 0
+    //iterate through each question
+    for (let i=0; i < questions.length; i++){
+      let answerSet = questions[i].answers
+      //is any answer both correct and selected
+      let thisScore = answerSet.some((answer)=>answer.correct && answer.selected) ? 1 : 0
+      totalScore = totalScore + thisScore
+    }
+    setScore(totalScore)
+  },[questions])
+
+    //the questions text and answer text will arrive with special characters
     //encoded as HTML e.g. &#49; or some such
     //must decode them so they will display properly
-    function decodeString(htmlCodeString){
+  function decodeString(htmlCodeString){
       let elem = document.createElement('textarea');
       elem.innerHTML = htmlCodeString;
       return elem.value;        
@@ -66,6 +86,7 @@ function App() {
           id: nanoid() 
   })
       //sort alphabetically since that should be fairly random
+      //TODO consider changing this to a truly random sort
       answers.sort(( a, b )=> {
           if ( a.answer < b.answer ){
             return -1;
@@ -78,25 +99,32 @@ function App() {
         return answers
   }
 
-  function checkAnswers(){
-    setIsLocked(true)
-    setScore(4)
+  //this is called by child component whenever the
+  //selected answer for a question changes
+  function updateQuestion(question){
+    setQuestions(prevData=>(
+      prevData.map(item=> question.id === item.id ? question : item )
+    ))
   }
 
+  //user clicks the Check Answers button
+  function checkAnswers(){
+    setIsLocked(true)
+  }
+
+  //user clicks the Play Again button
   function newGame(){
     setScore(0)
     setGameCount(prevCount=>prevCount+1)
     setIsLocked(false)
   }
   
-  // <p>questions is {JSON.stringify(questions)}</p>
-
   return (
     <div className="App">
-      { isStarted && <Questions isLocked={isLocked} qData={questions} updateQData={setQuestions}/>}
+      { isStarted && <Questions isLocked={isLocked} qData={questions} updateQData={updateQuestion}/>}
       <GameControls gameCount={gameCount} isLocked={isLocked} score={score} 
         isStarted={isStarted} checkAnswers={checkAnswers} newGame={newGame}
-        setIsStarted={setIsStarted}/>
+        setIsStarted={setIsStarted} total={numQuestions}/>
     </div>
   )
 
