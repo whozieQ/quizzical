@@ -9,7 +9,6 @@ export default function GameControls({gameCount, isLocked,
     //generate the game results text
     function getScore(){
         const correct = score
-        const total = total
         return `You scored ${correct} / ${total} correct answers`
     }
 

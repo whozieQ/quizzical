@@ -1,4 +1,5 @@
 import React from "react"
+import './Questions.css'
 
 //this Component displays a single question and its possible ansswers
 //it receives a single question as a property
@@ -39,7 +40,7 @@ export default function Question({question,updateQuestion,showResults}){
     function getAnswersHTML(){
         return (
             question.answers.map(answer=> (
-                <div key={answer.id}>
+                <div key={answer.id} className="answer--container">
                     <input 
                         className="answer--hidden"
                         onClick={()=>handleClick(answer.id)} 
@@ -52,8 +53,9 @@ export default function Question({question,updateQuestion,showResults}){
                 </div>
             ))
         )
-}
+    }
 
+  
     return (
         <article className="question">
             <h2 className="question--title">{question.question}</h2>
