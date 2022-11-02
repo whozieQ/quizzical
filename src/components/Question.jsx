@@ -1,85 +1,29 @@
-import React , {useState} from "react"
-import { nanoid } from 'nanoid'
+import React from "react"
 
-export default function Question(props){
-    //This component receives a single question
-    //decode the display strings
-    //create an answers array
-    const [question, setQuestion] = React.useState(
-        {
-            ...props.question, 
-            question: decodeString(props.question.question),
-            answers:getAnswerOptions()}
-        )
- 
-// TODO: useEffect to push the updated Question data back up 
-//to the Questions component
-//Instead of updating the questions themselves when an answer is selected,
-// consider just maintaining a totally separate array for the answers, to simplify things??
+//this Component displays a single question and its possible ansswers
+//it receives a single question as a property
+export default function Question({question,updateQuestion,showResults}){
 
-
-    //the questions and answers will arrive with special characters
-    //encoded as HTML e.g. &#49; or some such
-    //must decode them so they will display properly
-    function decodeString(htmlCodeString){
-        let elem = document.createElement('textarea');
-        elem.innerHTML = htmlCodeString;
-        return elem.value;        
-    }
-
-    //the answers arrive split into a group of incorrect answers
-    //and a separate listing of the correct answer
-    //must mix them together into one list with
-    //properties to indicate correct/incorrect and
-    //selected or not
-    function getAnswerOptions(){
-        let answers = props.question.incorrect_answers.map((a)=> {
-            return {
-                answer: decodeString(a),
-                correct: false,
-                selected: false,
-                id: nanoid() 
-            }
-        })
-        answers.push({
-            answer: decodeString(props.question.correct_answer),
-            correct: true,
-            selected: false,
-            id: nanoid() 
-    })
-        //sort alphabetically since that should be fairly random
-        answers.sort(( a, b )=> {
-            if ( a.answer < b.answer ){
-              return -1;
-            }
-            if ( a.answer > b.answer ){
-              return 1;
-            }
-            return 0;
-          })
-          return answers
-    }
-
-    //update Selected value in the state property for this answer
+    //update Selected value in the state property for 
+    //this answer in this question
     function handleClick(id){
-        setQuestion((prevQuestion)=>{
-            return (
-                {
-                    ...prevQuestion,
-                    answers: prevQuestion.answers.map(item=>(
-                        {
-                            ...item,
-                            selected: item.id===id ? true : false
-                        }
-                    ))
-                }
-            )
-        })
+        updateQuestion(
+            {
+                ...question,
+                answers: question.answers.map(item=>(
+                    {
+                        ...item,
+                        selected: item.id===id ? true : false
+                    }
+                ))
+            }
+        )
     }
 
+    //choose the style classes that match selected/correct/incorrect condition
     function getAnswerStyle(answer){
         let classList = "answer--button"
-        if (props.showResults) {
+        if (showResults) {
             if (answer.selected) {
                 classList = answer.correct ? "answer--button correct" : "answer--button incorrect-selected"
             } else {
@@ -91,7 +35,8 @@ export default function Question(props){
         return classList
     }
 
-    function getHTML(){
+    //generates JSX elements which render the answer options
+    function getAnswersHTML(){
         return (
             question.answers.map(answer=> (
                 <div key={answer.id}>
@@ -100,8 +45,8 @@ export default function Question(props){
                         onClick={()=>handleClick(answer.id)} 
                         type="radio" 
                         id={answer.id} 
-                        name="fav_language" 
-                        value={decodeString(answer.answer)}
+                        name="triviaAnswers" 
+                        value={answer.answer}
                     />
                     <label className={getAnswerStyle(answer)} htmlFor={answer.id}>{answer.answer}</label>
                 </div>
@@ -113,7 +58,7 @@ export default function Question(props){
         <article className="question">
             <h2 className="question--title">{question.question}</h2>
             <div className="question--answers">
-                {getHTML()}
+                {getAnswersHTML()}
             </div>
         </article>
 

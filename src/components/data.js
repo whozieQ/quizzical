@@ -1,53 +1,51 @@
 export default {
-  data: [
+  response_code: 0,
+  results: [
     {
-      category: "History",
+      category: "Entertainment: Japanese Anime & Manga",
       type: "multiple",
-      difficulty: "medium",
+      difficulty: "easy",
       question:
-        "Which of the following is NOT classified as a Semetic language?",
-      correct_answer: "Sumerian",
-      incorrect_answers: ["Maltese", "Akkadian", "Mandaic"],
-      id: 1
+        "In &quot;Fairy Tail&quot;, what is the nickname of Natsu Dragneel?",
+      correct_answer: "The Salamander",
+      incorrect_answers: ["The Dragon Slayer", "The Dragon", "The Demon"],
     },
     {
-      category: "Entertainment: Music",
+      category: "Entertainment: Film",
       type: "multiple",
-      difficulty: "medium",
-      question:
-        "Which of these artists was NOT a member of the electronic music supergroup Swedish House Mafia, which split up in 2013?",
-      correct_answer: "Alesso",
-      incorrect_answers: ["Steve Angello", "Sebastian Ingrosso", "Axwell"],
-      id: 2
+      difficulty: "easy",
+      question: "Which actor plays Obi-Wan Kenobi in Star Wars Episodes I-lll?",
+      correct_answer: "Ewan McGregor",
+      incorrect_answers: ["Alec Guinness", "Hayden Christensen", "Liam Neeson"],
     },
     {
-      category: "Entertainment: Television",
+      category: "Sports",
       type: "multiple",
-      difficulty: "medium",
-      question:
-        "Which of the following was not an actor/actress on the American television show &quot;Saturday Night Live&quot; in Season 42?",
-      correct_answer: "Tina Fey",
-      incorrect_answers: ["Mikey Day", "Kate McKinnon", "Sasheer Zamata"],
-      id: 3
+      difficulty: "easy",
+      question: "Which team won 2014 FIFA World Cup in Brazil?",
+      correct_answer: "Germany",
+      incorrect_answers: ["Argentina", "Brazil", "Netherlands"],
     },
     {
       category: "Entertainment: Japanese Anime & Manga",
       type: "multiple",
       difficulty: "easy",
-      question: "Who is the main heroine of the anime, Full Metal Panic!",
-      correct_answer: "Kaname Chidori",
-      incorrect_answers: ["Teletha Testarossa", "Melissa Mao", "Kyoko Tokiwa"],
-      id: 4
+      question:
+        "What is the name of Funny Valentine&#039;s stand in Jojo&#039;s Bizarre Adventure Part 7, Steel Ball Run?",
+      correct_answer: "Dirty Deeds Done Dirt Cheap",
+      incorrect_answers: [
+        "Filthy Acts Done For A Reasonable Price",
+        "Civil War",
+        "God Bless The USA",
+      ],
     },
     {
-      category: "Entertainment: Video Games",
+      category: "Entertainment: Japanese Anime & Manga",
       type: "multiple",
-      difficulty: "medium",
-      question:
-        "Which of the following Terran units from the RTS game Starcraft was first introduced in the expansion Brood War?",
-      correct_answer: "Medic",
-      incorrect_answers: ["Wraith", "Science Vessel", "SCV"],
-      id: 5
+      difficulty: "easy",
+      question: "In the Naruto manga, what is the last name of Tsunade?",
+      correct_answer: "Senju",
+      incorrect_answers: ["Haruno", "Uzumaki", "Yamanaka"],
     },
   ],
 };

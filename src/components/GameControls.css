@@ -1,0 +1,11 @@
+
+.controls--info,
+.controls--container{
+    display: flex;
+    flex-direction: column;
+}
+.controls--buttons{
+    display: flex;
+    justify-content: space-evenly;
+
+}
