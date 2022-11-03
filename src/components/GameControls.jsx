@@ -9,7 +9,6 @@ export default function GameControls({gameCount, isLocked,
     //generate the game results text
     function getScore(){
         const correct = score
-        const total = total
         return `You scored ${correct} / ${total} correct answers`
     }
 
@@ -22,7 +21,7 @@ export default function GameControls({gameCount, isLocked,
                 { isLocked && <p>{getScore()}</p>}
             </div>
             <div className="controls--buttons">
-                { !isStarted && <button onClick={()=>setIsStarted(true)}>Start Game</button>}
+                { !isStarted && <button onClick={()=>setIsStarted(true)}>Start quiz</button>}
                 { isStarted && !isLocked && <button onClick={checkAnswers}>Check Answers</button>}
                 { isLocked && <button onClick={newGame}>New Game</button>}
             </div>

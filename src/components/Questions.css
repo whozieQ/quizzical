@@ -1,11 +1,31 @@
+.questions--container{
+    height: 75vh;
+    display: grid;
+  }
+article{
+    border-bottom: 0.8px solid #DBDEF0;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+.question--title{
+    font-size: 1rem;
+}
+.question--answers{
+    font-size: .75rem;
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+}
+.answer--container{
+    margin: 10px;
+}
 .answer--hidden{
     opacity: 0;
     width: 0;
     position: fixed;
-}
-.question--answers{
-    display: flex;
-    justify-content: space-evenly;
 }
 .answer--button{
     border-radius: 8px;

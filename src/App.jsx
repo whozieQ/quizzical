@@ -5,7 +5,7 @@ import Questions from './components/Questions'
 import GameControls from './components/GameControls'
 import questionlist from "./components/data"
 
-const useStaticData = true
+const useStaticData = false
 const numQuestions = 5
 
 function App() {
@@ -118,7 +118,8 @@ function App() {
     setGameCount(prevCount=>prevCount+1)
     setIsLocked(false)
   }
-  
+
+ 
   return (
     <div className="App">
       { isStarted && <Questions isLocked={isLocked} qData={questions} updateQData={updateQuestion}/>}
