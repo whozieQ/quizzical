@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
-import './App.css'
-import Questions from './components/Questions'
-import GameControls from './components/GameControls'
-import questionlist from "./components/data"
+import '../css/App.css'
+import Questions from './Questions'
+import GameControls from './GameControls'
+import questionlist from "./data"
 
 const useStaticData = false
 const numQuestions = 5
@@ -117,6 +117,7 @@ function App() {
     setScore(0)
     setGameCount(prevCount=>prevCount+1)
     setIsLocked(false)
+    setIsStarted(false)
   }
 
  

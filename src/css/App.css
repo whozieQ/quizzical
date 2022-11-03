@@ -1,0 +1,17 @@
+#root {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background-image: url("../assets/blobs-yellow.png"),url("../assets/blobs-blue.png");
+  background-position: right top, left bottom;
+  background-repeat: no-repeat;
+}
+
+.App{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

@@ -1,5 +1,5 @@
 import React from 'react'
-import './GameControls.css'
+import '../css/GameControls.css'
 
 //this Component displays action buttons,
 //game instructions and game results
