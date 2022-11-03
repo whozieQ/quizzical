@@ -1,5 +1,4 @@
 import React from "react"
-import './Questions.css'
 
 //this Component displays a single question and its possible ansswers
 //it receives a single question as a property
